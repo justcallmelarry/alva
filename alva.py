@@ -10,7 +10,7 @@ argument = sys.argv[1] if len(sys.argv) > 1 else None
 
 def post_slack(payload):
     response = requests.post(url, data=payload)
-    print(response.text)
+    logging.info(response.text)
 
 
 with open(os.path.join(os.path.dirname(__file__), 'webhook.json'), 'r') as json_file:
