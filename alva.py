@@ -18,7 +18,7 @@ with open(os.path.join(os.path.dirname(__file__), 'webhook.json'), 'r') as json_
     url = json_data.get('slack_webhook')
     channel = json_data.get('channel')
 
-with open(os.path.join(os.path.dirname(__file__), 'alva-settings.json'), 'r') as messages_file:
+with open(os.path.join(os.path.dirname(__file__), 'alva-settings.json'), 'r', encoding='utf-8') as messages_file:
     json_data = json.loads(messages_file.read())
     msg30 = []
     msg15 = []
