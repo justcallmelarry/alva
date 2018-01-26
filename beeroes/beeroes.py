@@ -1,7 +1,7 @@
 import csv
 import json
 import requests
-webhook = 'https://hooks.slack.com/services/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'
+webhook = ''
 beeroes_names = []
 payload = {'text': 'A big thank you to {} for the much appriciated beeroes run! :clap:'.format(beeroes_names)}
 
