@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import json
 import logging
@@ -25,7 +26,7 @@ logging.info(beeroe_virgin)
 list_virgins = ', '.join(beeroe_virgin)
 
 
-with open('file.csv', 'a', newline='', encoding='utf-8') as file:
+with open('file.csv', 'a', newline=' ', encoding='utf-8') as file:
     csv_writer = csv.writer(file, delimiter=';', quotechar='“')
     csv_writer.writerow(list_names)
 
