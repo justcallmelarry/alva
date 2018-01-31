@@ -4,7 +4,7 @@ import json
 import logging
 import requests
 logging.basicConfig(filename='beer.log', level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-webhook = 'https://hooks.slack.com/services/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'
+webhook = ''  # input slack webhook
 
 
 with open('beeroes.csv', 'r', encoding='utf-8') as beeroes:
