@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from oauth2client.service_account import ServiceAccountCredentials
 from alva import load_slack_settings, post_slack
+from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import json
 import logging
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
         # if there was someone who was on their first run, that certainly requires an extra shout out!
         if len(virgins) > 0:
-            string_thanks = '{} And hey! It was also {}\'s first beer run this year! Yeeeeeey!'.format(string_thanks, create_string(virgins))
+            string_thanks = '{} And hey! It was also {}\'s first beer run! Yeeeeeey!'.format(string_thanks, create_string(virgins))
 
         # if someone has been on 20 runs total, that is both praise- and badge worthy
         if len(veterans) > 0:
