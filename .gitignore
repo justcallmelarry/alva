@@ -1,3 +1,5 @@
 client_secret.json
 .DS_Store
 alva.pyc
+__pycache__/
+webhook_*.json
