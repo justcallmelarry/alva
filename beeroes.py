@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from alva import load_slack_settings, post_slack
-from oauth2client.service_account import ServiceAccountCredentials
-import gspread
+import pygsheets
 import json
 import logging
 
@@ -34,8 +33,7 @@ if __name__ == '__main__':
 
     # google drive/sheets login-credentials-stuff
     scope = ['https://spreadsheets.google.com/feeds']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)  # needs to be a service account
-    client = gspread.authorize(creds)
+    client = pygsheets.authorize(service_file='client_secret.json')
 
     # get all beeroes that haven't been thanked before
     sheet = client.open('alva-beeroes').sheet1  # spreadsheet called alva-beeroes must be created and the service account invited by email to edit
@@ -66,13 +64,13 @@ if __name__ == '__main__':
             else:
                 if bname in duplicate_check.get(bdate):
                     logging.warning('it seems that {} is trying to cheat!'.format(bname))
-                    sheet.update_cell(i, 3, '-')
+                    sheet.update_cell('C{}'.format(i), '-')
                     continue
                 else:
                     if bdate not in duplicate_check:
                         duplicate_check[bdate] = []
                     duplicate_check[bdate].append(bname)
-            sheet.update_cell(i, 3, 'X')
+            sheet.update_cell('C{}'.format(i), 'X')
             if bname not in old_beeroes and bname not in virgins:
                 virgins.append(bname)
             elif old_beeroes.get(bname) == 19:
