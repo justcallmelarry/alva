@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from alva import load_slack_settings, post_slack
-import pygsheets
 import json
 import logging
+import os
+import pygsheets
 
 
 def create_string(name_list):
@@ -33,7 +34,7 @@ if __name__ == '__main__':
 
     # google drive/sheets login-credentials-stuff
     scope = ['https://spreadsheets.google.com/feeds']
-    client = pygsheets.authorize(service_file='client_secret.json')
+    client = pygsheets.authorize(service_file=os.path.join(os.path.dirname(__file__), 'client_secret.json'))
 
     # get all beeroes that haven't been thanked before
     sheet = client.open('alva-beeroes').sheet1  # spreadsheet called alva-beeroes must be created and the service account invited by email to edit
