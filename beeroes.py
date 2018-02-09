@@ -45,7 +45,7 @@ if __name__ == '__main__':
     duplicate_check = {}
     virgins = []
     veterans = []
-    for i, beero in enumerate(all_records, start=1):
+    for i, beero in enumerate(all_records, start=2):
         try:
             bname = beero.get('Who')
             if bname is None or bname == '' or beero.get('Cred') == '-':
