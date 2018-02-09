@@ -10,6 +10,8 @@ def create_string(name_list):
     list_len = len(name_list)
     i = 1
     for name in name_list:
+        if name is None or name == '':
+            continue
         if i == 1:
             name_string = '@{}'.format(name)
         elif i == list_len:
@@ -48,8 +50,12 @@ if __name__ == '__main__':
     veterans = []
     i = 1
     for beero in all_records:
+        if beero is None:
+            continue
         i += 1
         bname = beero.get('Who')
+        if bname is None or bname == '':
+            continue
         bdate = beero.get('When').replace('-', '')
         if beero.get('Cred') == 'X':
             set_or_add(old_beeroes, bname, 1)
