@@ -7,18 +7,16 @@ import pygsheets
 
 
 def create_string(name_list):
-    list_len = len(name_list)
-    i = 1
-    for name in name_list:
+    name_string = None
+    for i, name in enumerate(name_list, start=1):
         if name is None or name == '':
             continue
-        if i == 1:
+        if name_string is None:
             name_string = '@{}'.format(name)
-        elif i == list_len:
+        elif i == len(name_list):
             name_string = '{} & @{}'.format(name_string, name)
         else:
             name_string = '{}, @{}'.format(name_string, name)
-        i += 1
     return name_string
 
 
@@ -29,9 +27,8 @@ def set_or_add(d, k, v):
         d[k] += v
 
 
-logging.basicConfig(level=logging.WARNING, format='%(asctime)s %(levelname)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.WARNING, format='%(asctime)s %(levelname)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
     url, channel, payload_text = load_slack_settings()
 
     # google drive/sheets login-credentials-stuff
@@ -48,40 +45,37 @@ if __name__ == '__main__':
     duplicate_check = {}
     virgins = []
     veterans = []
-    i = 1
-    for beero in all_records:
-        if beero is None:
-            continue
-        i += 1
-        bname = beero.get('Who')
-        if bname is None or bname == '':
-            continue
-        bdate = beero.get('When').replace('-', '')
-        if beero.get('Cred') == 'X':
-            set_or_add(old_beeroes, bname, 1)
-            continue
-        elif beero.get('Cred') == '-':
-            continue
-        else:
-            if bname not in week_beeroes:
-                week_beeroes.append(bname)
-                if bdate not in duplicate_check:
-                    duplicate_check[bdate] = []
-                duplicate_check[bdate].append(bname)
+    for i, beero in enumerate(all_records, start=2):
+        try:
+            bname = beero.get('Who')
+            if bname is None or bname == '' or beero.get('Cred') == '-':
+                continue
+            bdate = beero.get('When').replace('-', '')
+            if beero.get('Cred') == 'X':
+                set_or_add(old_beeroes, bname, 1)
+                continue
             else:
-                if bname in duplicate_check.get(bdate):
-                    logging.warning('it seems that {} is trying to cheat!'.format(bname))
-                    sheet.update_cell('C{}'.format(i), '-')
-                    continue
-                else:
+                if bname not in week_beeroes:
+                    week_beeroes.append(bname)
                     if bdate not in duplicate_check:
                         duplicate_check[bdate] = []
                     duplicate_check[bdate].append(bname)
-            sheet.update_cell('C{}'.format(i), 'X')
-            if bname not in old_beeroes and bname not in virgins:
-                virgins.append(bname)
-            elif old_beeroes.get(bname) == 19:
-                veterans.append(bname)
+                else:
+                    if bname in duplicate_check.get(bdate):
+                        logging.warning('it seems that {} is trying to cheat!'.format(bname))
+                        sheet.update_cell('C{}'.format(i), '-')  # update column C of the current row
+                        continue
+                    else:
+                        if bdate not in duplicate_check:
+                            duplicate_check[bdate] = []
+                        duplicate_check[bdate].append(bname)
+                sheet.update_cell('C{}'.format(i), 'X')  # update column C of the current row
+                if bname not in old_beeroes and bname not in virgins:
+                    virgins.append(bname)
+                elif old_beeroes.get(bname) == 19:
+                    veterans.append(bname)
+        except Exception as e:
+            logging.warning('beero-problem: {}'.format(e))
 
     # info printing
     logging.info('new beeroes: {}'.format(week_beeroes))
