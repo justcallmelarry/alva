@@ -11,11 +11,11 @@ def create_string(name_list):
     i = 1
     for name in name_list:
         if i == 1:
-            name_string = '{}'.format(name)
+            name_string = '@{}'.format(name)
         elif i == list_len:
-            name_string = '{} & {}'.format(name_string, name)
+            name_string = '@{} & @{}'.format(name_string, name)
         else:
-            name_string = '{}, {}'.format(name_string, name)
+            name_string = '@{}, @{}'.format(name_string, name)
         i += 1
     return name_string
 

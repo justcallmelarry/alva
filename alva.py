@@ -21,7 +21,8 @@ def load_slack_settings():
         payload_text = {
             'username': 'Alva',
             'icon_emoji': ':beers:',
-            'channel': channel
+            'channel': channel,
+            "link_names": 1
         }
         return url, channel, payload_text
 
