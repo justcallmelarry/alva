@@ -32,7 +32,6 @@ if __name__ == '__main__':
     url, channel, payload_text = load_slack_settings()
 
     # google drive/sheets login-credentials-stuff
-    scope = ['https://spreadsheets.google.com/feeds']
     client = pygsheets.authorize(service_file=os.path.join(os.path.dirname(__file__), 'client_secret.json'))
 
     # get all beeroes that haven't been thanked before
