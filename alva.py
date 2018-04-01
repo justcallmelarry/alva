@@ -53,7 +53,7 @@ if __name__ == '__main__':
         'func3': random.choice(msg)
     }
     payload_text['text'] = arguments.get(argument, None)
-    if payload_text is not None:
-        post_slack(url, ujson.dumps(payload_text))
-    else:
+    if not payload_text['text']:
         logging.error('faulty argument, {}, {}'.format(argument, payload_text))
+    else:
+        post_slack(url, ujson.dumps(payload_text))
