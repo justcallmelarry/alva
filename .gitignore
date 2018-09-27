@@ -4,3 +4,4 @@ alva.pyc
 __pycache__/
 webhook_*.json
 webhook.json
+.mypy_cache
