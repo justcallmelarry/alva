@@ -7,7 +7,8 @@
         "Whats your drink of choice today? React with an emoji!",
         "Hi all! I haven't seen you in a week, missed you!",
         "$weekday $weekday $weekday $weekday $weekday $weekday",
-        "FYI, opening hours for my office today are 16:00 to late."
+        "FYI, opening hours for my office today are 16:00 to late.",
+        "Hey! Let's play some funky tunes, we should start warming up for the weekend!"
     ],
     "msg15": [
         "Soon... :beer: Happy $weekday!",
@@ -16,7 +17,10 @@
         "How's the $weekday mood? :smile: :slightly_smiling_face: :disappointed: :beer: ?",
         "See you all in :flag-de: Little Berghain :flag-de: soon?",
         "Going to Spain? Una grande cerveza por favor! :flag-es:",
-        "$weekdays are the best days to be at the office, right?"
+        "$weekdays are the best days to be at the office, right?",
+        "Wollen Sie mit mir Bier trinken?",
+        "Who's staying for some AW fun and games? I've charged the PS4 controllers :video_game:",
+        "Hey, you should go and give the ping pong table some attention today!"
     ],
     "msg": [
         "\"Biiiiiiiiiiiru time!\" - Carl Oscar Aaro :beer: :jp:",
@@ -28,6 +32,7 @@
         "Have a great weekend everyone, my office is now open!",
         "Kippis! :flag-fi:",
         "干杯! :flag-cn:",
-        "Proost! :flag-nl:"
+        "Proost! :flag-nl:",
+        "Terviseks! :flag-ee:"
     ]
 }
