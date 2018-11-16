@@ -13,7 +13,7 @@ def create_string(name_list: list) -> str:
     for i, name in enumerate(name_list, start=1):
         if not name or name == '':
             continue
-        if name_string is '':
+        if name_string == '':
             name_string = '@{}'.format(name)
         elif i == len(name_list):
             name_string = '{} & @{}'.format(name_string, name)
