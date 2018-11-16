@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
     # as long as there was someone doing a run this week, thank those brave souls
     if len(week_beeroes) > 0:
-        string_thanks = 'A big thank you to {} for the much appriciated beer run! :clap:'.format(
+        string_thanks = 'A big thank you to {} for the much appreciated beer run! :clap:'.format(
             create_string(week_beeroes)
         )
 
