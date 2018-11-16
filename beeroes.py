@@ -8,10 +8,12 @@ import pygsheets
 
 def create_string(name_list: list) -> str:
     name_string = ''
+    if len(name_list) == 0:
+        return ''
     for i, name in enumerate(name_list, start=1):
         if not name or name == '':
             continue
-        if name_string is None:
+        if name_string is '':
             name_string = '@{}'.format(name)
         elif i == len(name_list):
             name_string = '{} & @{}'.format(name_string, name)
@@ -70,7 +72,7 @@ if __name__ == '__main__':
                         duplicate_check[bdate] = []
                     duplicate_check[bdate].append(bname)
                 else:
-                    if bname in duplicate_check.get(bdate):
+                    if bname in duplicate_check.get(bdate, ''):
                         logging.warning(
                             'it seems that {} is trying to cheat!'.format(bname)
                         )
