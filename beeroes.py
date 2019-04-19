@@ -8,10 +8,12 @@ import pygsheets
 
 def create_string(name_list: list) -> str:
     name_string = ''
+    if len(name_list) == 0:
+        return ''
     for i, name in enumerate(name_list, start=1):
         if not name or name == '':
             continue
-        if name_string is None:
+        if name_string == '':
             name_string = '@{}'.format(name)
         elif i == len(name_list):
             name_string = '{} & @{}'.format(name_string, name)
@@ -97,7 +99,7 @@ if __name__ == '__main__':
 
     # as long as there was someone doing a run this week, thank those brave souls
     if len(week_beeroes) > 0:
-        string_thanks = 'A big thank you to {} for the much appriciated beer run! :clap:'.format(
+        string_thanks = 'A big thank you to {} for the much appreciated beer run! :clap:'.format(
             create_string(week_beeroes)
         )
 
