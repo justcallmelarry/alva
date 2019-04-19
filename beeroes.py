@@ -38,6 +38,7 @@ if __name__ == '__main__':
     client = pygsheets.authorize(
         service_file=os.path.join(
             os.path.dirname(__file__),
+            'conf',
             'client_secret.json'
         )
     )
@@ -70,7 +71,7 @@ if __name__ == '__main__':
                         duplicate_check[bdate] = []
                     duplicate_check[bdate].append(bname)
                 else:
-                    if bname in duplicate_check.get(bdate):
+                    if bname in duplicate_check.get(bdate, []):
                         logging.warning(
                             'it seems that {} is trying to cheat!'.format(bname)
                         )

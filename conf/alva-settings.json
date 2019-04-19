@@ -1,0 +1,48 @@
+{
+    "bank_holidays": [
+        "2019-04-19", "2019-04-22", "2019-05-01", "2019-05-30",
+        "2019-06-06", "2019-06-21", "2019-12-24", "2019-12-25",
+        "2019-12-26", "2019-12-31", "2020-01-01", "2020-01-06",
+        "2020-04-10", "2020-04-13", "2020-05-01", "2020-05-21",
+        "2020-06-19", "2020-12-24", "2020-12-25", "2020-12-31",
+        "2021-01-01", "2021-01-06", "2021-04-02", "2021-04-05",
+        "2021-05-13", "2021-06-25", "2021-12-24", "2021-12-31",
+        "2022-01-06", "2022-04-15", "2022-04-18", "2022-05-26",
+        "2022-06-24", "2022-12-26", "2023-01-06", "2023-04-07",
+        "2023-04-10", "2023-05-01", "2023-05-18", "2023-06-06",
+        "2023-06-23", "2023-12-25", "2023-12-26"
+    ],
+    "msg":{
+        "30": [
+            "In 30 minutes we will enjoy some refreshments!",
+            "Who is down for a beer in 30 min?",
+            "Please stop by my office in 30 min for something to drink!",
+            "T minus 30 minutes to :beer: :cocktail: :wine_glass: :tropical_drink:",
+            "Whats your drink of choice today? React with an emoji!",
+            "Hi all! I haven't seen you in a week, missed you!",
+            "$weekday $weekday $weekday $weekday $weekday $weekday",
+            "FYI, opening hours for my office today are 16:00 to late."
+        ],
+        "15": [
+            "Soon... :beer: Happy $weekday!",
+            "Just gonna finish this last thing, then I'm down for a beer :beer:",
+            "$weekday! Anyone got some cool plans for the weekend?",
+            "How's the $weekday mood? :smile: :slightly_smiling_face: :disappointed: :beer: ?",
+            "See you all in :flag-de: Little Berghain :flag-de: soon?",
+            "Going to Spain? Una grande cerveza por favor! :flag-es:",
+            "$weekdays are the best days to be at the office, right?"
+        ],
+        "0": [
+            "\"Biiiiiiiiiiiru time!\" - Carl Oscar Aaro :beer: :jp:",
+            "Awesome week everyone, you all deserve a :beer:!",
+            ":beer: HAVE :beer: A :beer: BEER :beer:",
+            "Great job this week ya'll, beer is on me! :beer:",
+            "Go grab a :beer:, I hope they're cold and ready!",
+            "Help yourself to a beer, drink, cider or a glass of wine, and have a great weekend!",
+            "Have a great weekend everyone, my office is now open!",
+            "Kippis! :flag-fi:",
+            "干杯! :flag-cn:",
+            "Proost! :flag-nl:"
+        ]
+    }
+}
