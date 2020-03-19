@@ -1,11 +1,12 @@
-from datetime import datetime
-from typing import Any
+import json
 import logging
 import os
 import random
-import requests
 import sys
-import ujson
+from datetime import datetime, date
+from typing import Any
+
+import requests
 
 
 class FriendlyNeighborhoodBeerBot:
@@ -18,13 +19,13 @@ class FriendlyNeighborhoodBeerBot:
         return response.text
 
     def load_slack_settings(self) -> None:
-        with open(os.path.join(self.filepath, 'webhook.json'), 'r') as json_file:
-            json_data = ujson.load(json_file)
+        with open(os.path.join(self.filepath, 'conf', 'webhook.json'), 'r') as json_file:
+            json_data = json.load(json_file)
             self.url = json_data.get('slack_webhook')
             self.channel = json_data.get('channel')
             self.payload_text = {
                 'username': 'Alva',
-                'icon_emoji': ':beers:',
+                'icon_emoji': ':alva_whale:',
                 'channel': self.channel,
                 "link_names": 1
             }
@@ -38,26 +39,40 @@ class FriendlyNeighborhoodBeerBot:
             message = message.replace(rep[0], rep[1])
         return message
 
-    def load_messages(self) -> None:
+    def load_generic_settings(self) -> None:
         with open(
-            os.path.join(self.filepath, 'alva-settings.json'),
+            os.path.join(self.filepath, 'conf', 'alva-settings.json'),
             'r',
             encoding='utf-8'
         ) as messages_file:
-            json_data = ujson.load(messages_file)
+            json_data = json.load(messages_file)
+            self.bank_holidays = json_data.get('bank_holidays', [])
             self.msg30: list = []
             self.msg15: list = []
             self.msg: list = []
-            for message in json_data.get('msg30'):
+            for message in json_data.get('msg', {}).get('30', []):
                 self.msg30.append(self.replace_variables(message))
-            for message in json_data.get('msg15'):
+            for message in json_data.get('msg', {}).get('15', []):
                 self.msg15.append(self.replace_variables(message))
-            for message in json_data.get('msg'):
+            for message in json_data.get('msg', {}).get('0', []):
                 self.msg.append(self.replace_variables(message))
 
-    def run(self) -> None:
+    def run(self, argument: str) -> None:
+        self.load_generic_settings()
         self.load_slack_settings()
-        self.load_messages()
+        today = date.today()
+        adhoc_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tools', '__adhoc__')
+        adhoc = os.path.isfile(adhoc_filepath)
+        run = False
+        if adhoc:
+            run = True
+        elif today.weekday() == 4:
+            if today.strftime('%Y-%m-%d') in self.bank_holidays:
+                return
+            else:
+                run = True
+        if not run:
+            return
         arguments = {
             'func1': random.choice(self.msg30),
             'func2': random.choice(self.msg15),
@@ -67,7 +82,9 @@ class FriendlyNeighborhoodBeerBot:
         if not self.payload_text['text']:
             logging.error('faulty argument, {}, {}'.format(argument, self.payload_text))
         else:
-            self.post_slack(ujson.dumps(self.payload_text))
+            self.post_slack(json.dumps(self.payload_text))
+        if adhoc and argument == 'func3':
+            os.remove(adhoc_filepath)
 
 
 if __name__ == '__main__':
@@ -82,4 +99,4 @@ if __name__ == '__main__':
         argument = 'func3'
 
     Alva = FriendlyNeighborhoodBeerBot()
-    Alva.run()
+    Alva.run(argument)
