@@ -25,7 +25,7 @@ class FriendlyNeighborhoodBeerBot:
             self.channel = json_data.get('channel')
             self.payload_text = {
                 'username': 'Alva',
-                'icon_emoji': ':alva_whale:',
+                'icon_emoji': json_data.get('icon_emoji'),
                 'channel': self.channel,
                 "link_names": 1
             }
