@@ -1,4 +1,5 @@
 {
     "slack_webhook": "https://hooks.slack.com/services/your/webhook/here",
-    "channel": "#beer-time"
+    "channel": "#beer-time",
+    "icon_emoji": ":alva_whale:"
 }
